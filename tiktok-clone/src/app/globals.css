@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-pink: #FE2C55;
+  --brand-cyan: #25F4EE;
+  --brand-dark: #161823;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #444; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #666; }
+
+/* Hide scrollbar for video feed */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Video snap scroll */
+.snap-mandatory { scroll-snap-type: y mandatory; }
+.snap-start { scroll-snap-align: start; }
+
+/* Gradient overlays */
+.video-gradient-bottom {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, transparent 70%);
+}
+.video-gradient-right {
+  background: linear-gradient(to left, rgba(0,0,0,0.1) 0%, transparent 100%);
+}
+
+/* Button pulse animation */
+@keyframes pulse-pink {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(254, 44, 85, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(254, 44, 85, 0); }
+}
+.pulse-pink { animation: pulse-pink 2s infinite; }
+
+/* Live badge */
+@keyframes live-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.live-dot { animation: live-blink 1.5s ease-in-out infinite; }
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-pink hover:bg-red-500 text-white font-semibold px-6 py-2 rounded-full transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-outline {
+    @apply border border-white/30 hover:border-white/60 text-white font-semibold px-6 py-2 rounded-full transition-all duration-200 active:scale-95;
+  }
+  .btn-ghost {
+    @apply text-white/70 hover:text-white hover:bg-white/10 px-4 py-2 rounded-lg transition-all duration-200;
+  }
+  .card {
+    @apply bg-brand-dark-2 border border-white/10 rounded-2xl;
+  }
+  .input {
+    @apply bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white placeholder-white/40 focus:outline-none focus:border-brand-pink/60 transition-colors w-full;
+  }
+  .badge-live {
+    @apply bg-brand-pink text-white text-xs font-bold px-2 py-0.5 rounded flex items-center gap-1;
+  }
+  .badge-verified {
+    @apply text-brand-cyan;
+  }
+}
